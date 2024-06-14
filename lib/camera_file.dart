@@ -80,6 +80,7 @@ class _CameraFileState extends State<CameraFile> with TickerProviderStateMixin {
           return;
         }
 
+        _controller?.setFlashMode(currentFlashMode);
         setState(() {});
       });
     } else {}
@@ -136,38 +137,51 @@ class _CameraFileState extends State<CameraFile> with TickerProviderStateMixin {
                                 },
                                 child: Stack(
                                   children: [
-                                    Image.file(
-                                      File(
-                                        imageFiles[index].path,
-                                      ),
-                                      height: 90,
+                                    Container(
                                       width: 60,
+                                      height: 110,
                                     ),
                                     Positioned(
-                                      top: 0,
-                                      right: 0,
-                                      child: GestureDetector(
-                                        onTap: () {
-                                          setState(() {
-                                            removeImage(index);
-                                          });
-                                        },
-                                        child: Container(
-                                          decoration: BoxDecoration(
-                                              border: Border.all(
-                                                  color: Colors.red, width: 1),
-                                              borderRadius:
-                                                  const BorderRadius.all(
-                                                      Radius.circular(100))),
-                                          child: const Padding(
-                                            padding: EdgeInsets.all(8.0),
-                                            child: Icon(
-                                                color: Colors.red,
-                                                Icons.delete),
+                                      bottom: 0,
+                                      left: 0,
+                                      child: Column(
+                                        children: [
+                                          Image.file(
+                                            File(
+                                              imageFiles[index].path,
+                                            ),
+                                            height: 90,
+                                            width: 60,
                                           ),
-                                        ),
+                                          SizedBox(
+                                            height: 8,
+                                          ),
+                                          GestureDetector(
+                                            onTap: () {
+                                              setState(() {
+                                                removeImage(index);
+                                              });
+                                            },
+                                            child: Container(
+                                              decoration: const BoxDecoration(
+                                                  color: Colors.white,
+                                                  // border: Border.all(
+                                                  //     color: Colors.red, width: 1),
+                                                  borderRadius:
+                                                      BorderRadius.all(
+                                                          Radius.circular(
+                                                              100))),
+                                              child: const Padding(
+                                                padding: EdgeInsets.all(8.0),
+                                                child: Icon(
+                                                    color: Colors.red,
+                                                    Icons.delete),
+                                              ),
+                                            ),
+                                          )
+                                        ],
                                       ),
-                                    )
+                                    ),
                                   ],
                                 ),
                               ),
@@ -269,18 +283,32 @@ class _CameraFileState extends State<CameraFile> with TickerProviderStateMixin {
               ),
             ),
             Positioned(
-              right: 32,
+              right: 0,
               left: MediaQuery.of(context).orientation == Orientation.portrait
                   ? 340
                   : null,
-              bottom: 32,
+              bottom: 0,
               child: IconButton(
                 iconSize: 40,
-                icon: const Icon(
-                  Icons.flash_off,
-                  color: Colors.white,
-                ),
-                onPressed: () {},
+                icon: currentFlashMode == FlashMode.off
+                    ? const Icon(
+                        Icons.flash_off,
+                        color: Colors.white,
+                      )
+                    : const Icon(
+                        Icons.flash_on,
+                        color: Colors.white,
+                      ),
+                onPressed: () {
+                  if (currentFlashMode == FlashMode.off) {
+                    currentFlashMode = FlashMode.torch;
+                  } else {
+                    currentFlashMode = FlashMode.off;
+                  }
+                  setState(() {
+                    _controller?.setFlashMode(currentFlashMode);
+                  });
+                },
               ),
             ),
           ],
