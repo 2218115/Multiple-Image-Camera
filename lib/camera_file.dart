@@ -117,8 +117,7 @@ class _CameraFileState extends State<CameraFile> with TickerProviderStateMixin {
                         // ignore: unnecessary_null_comparison
                         child: imageFiles[index] == null
                             ? const Text("No image captured")
-                            : imageFiles.length - 1 == index
-                                ? ScaleTransition(
+                            : ScaleTransition(
                                     scale: scaleAnimation,
                                     child: GestureDetector(
                                       onTap: () {
@@ -179,26 +178,6 @@ class _CameraFileState extends State<CameraFile> with TickerProviderStateMixin {
                                           )
                                         ],
                                       ),
-                                    ),
-                                  )
-                                : GestureDetector(
-                                    onTap: () {
-                                      Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                              builder: (BuildContext context) =>
-                                                  ImagePreviewView(
-                                                    File(
-                                                        imageFiles[index].path),
-                                                    "",
-                                                  )));
-                                    },
-                                    child: Image.file(
-                                      File(
-                                        imageFiles[index].path,
-                                      ),
-                                      height: 90,
-                                      width: 60,
                                     ),
                                   ),
                       )
