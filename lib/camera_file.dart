@@ -73,7 +73,7 @@ class _CameraFileState extends State<CameraFile> with TickerProviderStateMixin {
     _cameras = await availableCameras();
     // ignore: unnecessary_null_comparison
     if (_cameras != null) {
-      _controller = CameraController(_cameras[0], ResolutionPreset.ultraHigh,
+      _controller = CameraController(_cameras[0], ResolutionPreset.medium,
           enableAudio: false);
       _controller!.initialize().then((_) {
         if (!mounted) {
@@ -373,6 +373,7 @@ class _CameraFileState extends State<CameraFile> with TickerProviderStateMixin {
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: AppBar(
+        foregroundColor: Colors.white,
         actions: [
           imageFiles.isNotEmpty
               ? GestureDetector(
