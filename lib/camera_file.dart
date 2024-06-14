@@ -277,7 +277,7 @@ class _CameraFileState extends State<CameraFile> with TickerProviderStateMixin {
                 child: IconButton(
                   iconSize: 40,
                   icon: const Icon(
-                    Icons.camera_front,
+                    Icons.flash_off,
                     color: Colors.white,
                   ),
                   onPressed: _onCameraSwitch,
