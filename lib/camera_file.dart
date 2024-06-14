@@ -269,11 +269,11 @@ class _CameraFileState extends State<CameraFile> with TickerProviderStateMixin {
               ),
             ),
             Positioned(
+              right: 32,
               left: MediaQuery.of(context).orientation == Orientation.portrait
                   ? 340
                   : null,
-              bottom: 0,
-              right: 0,
+              bottom: 32,
               child: IconButton(
                 iconSize: 40,
                 icon: const Icon(
