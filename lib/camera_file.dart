@@ -40,9 +40,9 @@ class _CameraFileState extends State<CameraFile> with TickerProviderStateMixin {
     });
   }
 
-  removeImage() {
+  removeImage(index) {
     setState(() {
-      imageFiles.removeLast();
+      imageFiles.removeAt(index);
     });
   }
 
@@ -148,14 +148,33 @@ class _CameraFileState extends State<CameraFile> with TickerProviderStateMixin {
                                             child: GestureDetector(
                                               onTap: () {
                                                 setState(() {
-                                                  removeImage();
+                                                  removeImage(index);
                                                 });
                                               },
-                                              child: Image.network(
-                                                "https://logowik.com/content/uploads/images/close1437.jpg",
-                                                height: 30,
-                                                width: 30,
-                                              ),
+                                              child: Container(
+                                                              decoration: BoxDecoration(
+                                                                  border: Border.all(
+                                                                      color: Colors
+                                                                          .red,
+                                                                      width: 1),
+                                                                  borderRadius:
+                                                                      const BorderRadius
+                                                                          .all(
+                                                                          Radius.circular(
+                                                                              100))),
+                                                              child:
+                                                                  const Padding(
+                                                                padding:
+                                                                    EdgeInsets
+                                                                        .all(
+                                                                            8.0),
+                                                                child: Icon(
+                                                                    color: Colors
+                                                                        .red,
+                                                                    Icons
+                                                                        .delete),
+                                                              )),
+                                                        ),
                                             ),
                                           )
                                         ],
