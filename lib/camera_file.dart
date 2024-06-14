@@ -118,68 +118,57 @@ class _CameraFileState extends State<CameraFile> with TickerProviderStateMixin {
                         child: imageFiles[index] == null
                             ? const Text("No image captured")
                             : ScaleTransition(
-                                    scale: scaleAnimation,
-                                    child: GestureDetector(
-                                      onTap: () {
-                                        Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                                builder:
-                                                    (BuildContext context) =>
-                                                        ImagePreviewView(
-                                                          File(imageFiles[index]
-                                                              .path),
-                                                          "",
-                                                        )));
-                                      },
-                                      child: Stack(
-                                        children: [
-                                          Image.file(
-                                            File(
-                                              imageFiles[index].path,
-                                            ),
-                                            height: 90,
-                                            width: 60,
-                                          ),
-                                          Positioned(
-                                            top: 0,
-                                            right: 0,
-                                            child: GestureDetector(
-                                              onTap: () {
-                                                setState(() {
-                                                  removeImage(index);
-                                                });
-                                              },
-                                              child: Container(
-                                                              decoration: BoxDecoration(
-                                                                  border: Border.all(
-                                                                      color: Colors
-                                                                          .red,
-                                                                      width: 1),
-                                                                  borderRadius:
-                                                                      const BorderRadius
-                                                                          .all(
-                                                                          Radius.circular(
-                                                                              100))),
-                                                              child:
-                                                                  const Padding(
-                                                                padding:
-                                                                    EdgeInsets
-                                                                        .all(
-                                                                            8.0),
-                                                                child: Icon(
-                                                                    color: Colors
-                                                                        .red,
-                                                                    Icons
-                                                                        .delete),
-                                                              )),
-                                                        ),
-                                            ),
-                                          )
-                                        ],
+                                scale: scaleAnimation,
+                                child: GestureDetector(
+                                  onTap: () {
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (BuildContext context) =>
+                                                ImagePreviewView(
+                                                  File(imageFiles[index].path),
+                                                  "",
+                                                )));
+                                  },
+                                  child: Stack(
+                                    children: [
+                                      Image.file(
+                                        File(
+                                          imageFiles[index].path,
+                                        ),
+                                        height: 90,
+                                        width: 60,
                                       ),
-                                    ),
+                                      Positioned(
+                                        top: 0,
+                                        right: 0,
+                                        child: GestureDetector(
+                                          onTap: () {
+                                            setState(() {
+                                              removeImage(index);
+                                            });
+                                          },
+                                          child: Container(
+                                            decoration: BoxDecoration(
+                                                border: Border.all(
+                                                    color: Colors.red,
+                                                    width: 1),
+                                                borderRadius:
+                                                    const BorderRadius.all(
+                                                        Radius.circular(100))),
+                                            child: const Padding(
+                                              padding: EdgeInsets.all(8.0),
+                                              child: Icon(
+                                                  color: Colors.red,
+                                                  Icons.delete),
+                                            ),
+                                          ),
+                                        ),
+                                      )
+                                    ],
                                   ),
+                                ),
+                              ),
                       )
                     ],
                   );
